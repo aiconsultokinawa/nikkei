@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>日計 なんじぃ</title>
+<meta name="theme-color" content="#0f766e">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="なんじぃ">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="stylesheet" href="../app.css">
+</head>
+<body>
+<div class="wrap hide" id="setup">
+  <img class="icon" src="icon-512.png" alt="なんじぃのアイコン">
+  <h1>日計 なんじぃ</h1>
+  <p>ホーム画面にこのアイコンを置きます。<br>はじめに1回だけです。</p>
+
+  <div id="android" class="hide">
+    <button class="big" id="installBtn">ホーム画面に追加する</button>
+    <p style="font-size:14px;margin-top:10px">確認が出たら「インストール」を押してください。</p>
+    <ul class="steps hide" id="manual">
+      <li><span class="n">1</span><span>画面右上の <b>「⋮」</b> を押す</span></li>
+      <li><span class="n">2</span><span><b>「ホーム画面に追加」</b>を押す</span></li>
+      <li><span class="n">3</span><span><b>「インストール」</b>を選んで <b>「インストール」</b></span></li>
+    </ul>
+  </div>
+
+  <div id="ios" class="hide">
+    <ul class="steps">
+      <li><span class="n">1</span><span>画面の下にある <span class="share"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0a63d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M6 11v9h12v-9"/></svg></span> を押す</span></li>
+      <li><span class="n">2</span><span>メニューを下にずらして <b>「ホーム画面に追加」</b></span></li>
+      <li><span class="n">3</span><span>右上の <b>「追加」</b> を押す</span></li>
+    </ul>
+    <p style="font-size:14px;margin-top:12px">※ <b>Safari</b>で開いてください（Chromeだと追加できないことがあります）</p>
+  </div>
+
+  <div id="done" class="ok hide">追加できました。<br>ホーム画面の「なんじぃ」アイコンから開いてください。</div>
+  <button class="later" id="later">追加しないで、今すぐ使う</button>
+  <div class="arrow hide" id="arrow" aria-hidden="true">↓</div>
+</div>
+
+<div class="wrap hide" id="noToken">
+  <img class="icon" src="icon-512.png" alt="">
+  <h1>日計 なんじぃ</h1>
+  <p>お店にある<b>QRコードの紙</b>を、スマホのカメラで読み取って開いてください。</p>
+</div>
+
+<script>window.NIKKEI_STORE = { id: 'nanjii', name: 'なんじぃ' };</script>
+<script src="../config.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>
