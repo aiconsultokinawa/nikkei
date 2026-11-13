@@ -18,3 +18,8 @@ p{font-size:16px;line-height:1.65;color:var(--sub);margin:6px 0}
 .arrow{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);font-size:40px;color:#e8590c;animation:b 1s ease-in-out infinite}
 @keyframes b{50%{transform:translate(-50%,-10px)}}
 .hide{display:none!important}
+.keybox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-top:18px}
+.keybox input{width:100%;margin-top:8px;padding:14px;font-size:20px;border:2px solid var(--line);border-radius:12px;text-align:center;letter-spacing:.05em}
+.keybox input:focus{outline:none;border-color:var(--acc)}
+.msg{margin-top:14px;padding:12px;border-radius:12px;font-size:15px;background:#fdecea;color:#b42318}
+.msg.good{background:#e6f3f1;color:#0b5a54}

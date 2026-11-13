@@ -15,6 +15,41 @@
 
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js', { scope: './' }).catch(() => {});
 
+  // 店舗キーがないとき：QRコードの撮影、または手入力で設定する
+  function setupKey() {
+    $('noToken').classList.remove('hide');
+    const msg = (t, good) => { const m = $('keyMsg'); m.textContent = t; m.classList.remove('hide'); m.classList.toggle('good', !!good); };
+    const apply = raw => {
+      let t = String(raw || '').trim();
+      const m = t.match(/[?&]s=([A-Za-z0-9]+)/);
+      if (m) t = m[1];
+      t = t.replace(/[^A-Za-z0-9]/g, '');
+      if (t.length < 6) { msg('店舗キーが読み取れませんでした。もう一度お試しください。'); return; }
+      ls.set(key, t);
+      token = t;
+      msg('設定できました。開いています…', true);
+      if (standalone) setTimeout(openApp, 400);
+      else location.replace('./?s=' + encodeURIComponent(t));
+    };
+    $('keyBtn').onclick = () => apply($('keyIn').value);
+    $('keyIn').addEventListener('keydown', e => { if (e.key === 'Enter') apply($('keyIn').value); });
+    if ('BarcodeDetector' in window) {
+      $('scanBtn').classList.remove('hide');
+      $('scanBtn').onclick = () => $('scanFile').click();
+      $('scanFile').onchange = async e => {
+        const f = e.target.files[0]; e.target.value = '';
+        if (!f) return;
+        msg('読み取り中…', true);
+        try {
+          const det = new BarcodeDetector({ formats: ['qr_code'] });
+          const codes = await det.detect(await createImageBitmap(f));
+          if (!codes.length) { msg('QRコードが見つかりませんでした。QRコードを大きく、はっきり写してください。'); return; }
+          apply(codes[0].rawValue);
+        } catch (err) { msg('この機種では撮影で読み取れません。下の欄に英数字を入力してください。'); }
+      };
+    }
+  }
+
   function openApp() {
     document.body.innerHTML = '';
     const f = document.createElement('iframe');
@@ -24,7 +59,7 @@
     document.body.appendChild(f);
   }
 
-  if (!token) { $('noToken').classList.remove('hide'); return; }
+  if (!token) { setupKey(); return; }
   if (standalone) { openApp(); return; }
 
   // ---- インストール画面 ----

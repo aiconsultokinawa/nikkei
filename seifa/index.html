@@ -46,7 +46,15 @@
 <div class="wrap hide" id="noToken">
   <img class="icon" src="icon-512.png" alt="">
   <h1>日計 せいふぁー</h1>
-  <p>お店にある<b>QRコードの紙</b>を、スマホのカメラで読み取って開いてください。</p>
+  <p>はじめに、お店の<b>QRコードの紙</b>で設定します（1回だけ）。</p>
+  <button class="big hide" id="scanBtn">QRコードの紙を撮影する</button>
+  <input type="file" accept="image/*" capture="environment" id="scanFile" class="hide">
+  <div class="keybox">
+    <p style="font-size:15px">または、QRコードの下のURLの<br><b>「s=」の後ろの英数字</b>を入力</p>
+    <input id="keyIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="例：6dab4c56bd">
+    <button class="big" id="keyBtn" style="margin-top:10px;min-height:56px;font-size:18px">設定する</button>
+  </div>
+  <p id="keyMsg" class="msg hide"></p>
 </div>
 
 <script>window.NIKKEI_STORE = { id: 'seifa', name: 'せいふぁー' };</script>
